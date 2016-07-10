@@ -1,7 +1,7 @@
 <!-- Anderson Giang and Phillip Tran-->
 <!DOCTYPE html>
 <head>
-    <title>Lab2</title>
+    <title>Lab4</title>
 
     <style>
         body {
@@ -84,7 +84,9 @@
         #bio {
             height:100px;
         }
-
+		h1{
+		text-align:center;
+		}
 
     </style>
 
@@ -167,39 +169,6 @@
             }
         }
 
-        function checkStudentId() {
-            var cap = document.getElementById("notdigit");
-            var ele = document.getElementById("not9")
-            student_id = document.getElementById("sid").value;
-            if (student_id.length > 9 || student_id.length < 9) {
-
-                ele.innerHTML = "*Student ID must be 9 digits.";
-            }
-
-            else if (!(/^\d+$/).test(student_id)) {
-                cap.innerHTML = "*Student ID must contain all digits.";
-            }
-
-            else {
-                ele.innerHTML = "";
-                cap.innerHTML = "";
-                counter++;
-            }
-
-        }
-
-        function checkBiography() {
-            var ele = document.getElementById("bio").value;
-            var cap = document.getElementById("larger25");
-            var arr = ele.split(" ");
-            if (arr.length > 25) {
-                cap.innerHTML = "*Biography must contain 25 words or less.";
-            } else {
-                cap.innerHTML = "";
-                counter++;
-            }
-        }
-
         window.addEventListener("load", init, false);
 
     </script>
@@ -207,6 +176,7 @@
 
 </head>
 <body>
+<h1>Registration </h1>
 <div id="myContainer">
     <form id="aform">
         <div class="form-group">
@@ -223,20 +193,18 @@
             <p><em id="all-lettersL"></em></p>
         </div>
         <br>
-        <div class="form-group">
-            <label for="sid">Student ID</label>
-            <input id="sid" class="form-control" type="text" name="sid" value="" placeholder="Student ID" maxlength="9" required>
-            <p><em id="not9"></em></p>
-            <p><em id="notdigit"></em></p>
-        </div>
-        <br>
-        <div class="form-group">
-            <label class="labels" for="biography">Biography</label>
-            <textarea id="bio" class="form-control" name="biography" placeholder="Your biography.." required></textarea>
-            <p><em id="larger25"></em></p>
-        </div>
+		<div class="form-group">
+		<label class="email" for="email">Email</label>
+		<input type="email" name="email" class="form-control" value="" placeholder="Email" required></input>
+		</div>
+		<br>
+		<div class ="form-group">
+		<label class = "labels" for="pwd" > Password</label>
+		<input type="password" name="pwd" class="form-control" value="" placeholder="password" required>
+		</div>
         <br>
         <input class="button" type="submit" name="" value="Submit" placeholder="">
+		<!--input class="button" type="button" name="login" value="login" placeholder=""-->
     </form>
 </div>
 
