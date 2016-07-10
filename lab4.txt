@@ -1,0 +1,4 @@
+  a  description  of  all  files  you  are  turning  in  (especially  if  there  are  extra  PHP  files),
+• a  description  of  how  much  of  the  project  is  complete
+• a  description  of extra  credit that  was completed  (if  you  completed  it)
+• a  description  of  any  known  bugs  in  the  program
