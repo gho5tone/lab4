@@ -92,7 +92,7 @@
     </style>
 
 
-    <script>
+    <script type="text/javascript">
 
         var firstName;
         var lastName;
@@ -106,6 +106,7 @@
 
         function checkValidation(event) {
             //event.preventDefault()
+            checkPassword();
             checkFirstName();
             checkLastName();
             if (counter === 2) {
@@ -116,11 +117,18 @@
             else {
                 document.body.style.backgroundColor = "#fff";
                 counter = 0;
+                event.preventDefault();
             }
         }
 		
 		function checkPassword(){
-		
+		    var password = document.getElementById("pwd").value;
+		    if(!(password.match(/[\$\\\/\!\@\#\%\^\&\*\(\)\-\_\=\`\~\[\{\]\}\;\:\'\"\,\.\<\>\?]/gi) && password.match(/[\d]/gi) &&
+                               password.length > 5)){
+                document.getElementById("pwdError").innerHTML= "Password did not meet the security requirement of one number and one special character";
+
+		    }
+
 		}
 		
         function checkFirstName() {
@@ -203,6 +211,7 @@
 		<div class ="form-group">
 			<label class = "labels" for="pwd" > Password</label>
 			<input id="pwd" type="password" name="pwd" class="form-control" value="" placeholder="password" required>
+		    <p><em id="pwdError"></em></p>
 		</div>
         <br>
 			<input class="button" type="submit" name="" value="Submit" placeholder="">
