@@ -18,6 +18,10 @@
             margin-left: 115px;
         }
 
+        .logInBox, #login{
+            text-align:center;
+        }
+
         em {
             font-size: 8.5pt;
             position: relative;
@@ -74,6 +78,12 @@
             left:225px;
             margin-top: 8px;
         }
+        .loginButton{
+         background-color: #C54798;
+                    border: none;
+                    border-radius: 10px;
+                    padding:10px;
+        }
 
         #notdigit {
             position: relative;
@@ -101,6 +111,7 @@
         function init() {
             var form = document.getElementById("aform");
             form.addEventListener("submit", checkValidation, false);
+            document.getElementById("pwdLogin").addEventListener("change", checkPassword, false);
 			document.getElementById("pwd").addEventListener("change", checkPassword ,false);
         }
 
@@ -126,9 +137,12 @@
 		    if(!(password.match(/[\$\\\/\!\@\#\%\^\&\*\(\)\-\_\=\`\~\[\{\]\}\;\:\'\"\,\.\<\>\?]/gi) && password.match(/[\d]/gi) &&
                                password.length > 5)){
                 document.getElementById("pwdError").innerHTML= "Password did not meet the security requirement of one number and one special character";
-
 		    }
-
+		    var passwordLogin = document.getElementById("pwdLogin").value;
+            if(!(passwordLogin.match(/[\$\\\/\!\@\#\%\^\&\*\(\)\-\_\=\`\~\[\{\]\}\;\:\'\"\,\.\<\>\?]/gi) && password.match(/[\d]/gi) &&
+                               passwordLogin.length > 5)){
+            document.getElementById("pwdError").innerHTML= "Password did not meet the security requirement of one number and one special character";
+            }
 		}
 		
         function checkFirstName() {
@@ -187,6 +201,17 @@
 </head>
 <body>
 <h1>Registration </h1>
+<div id="login">
+    <h2>Login</h2>
+    <div class="logInBox"id="login">
+        <label>Email</label>
+        <input id="email" class="form-control" type="email" value="" placeholder="email" required>
+        <label>Password</label>
+        <input id="pwdLogin" class="form-control" type="password" value="" placeholder="password" required>
+        <input class="loginButton" type="submit" value="login">
+        <p><em id="pwdError"></em><p>
+    </div>
+</div>
 <div id="myContainer">
     <form id="aform">
         <div class="form-group">
