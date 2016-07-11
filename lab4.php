@@ -55,7 +55,7 @@
             font-family: "Open Sans", "Helvetica";
         }
 
-        form {
+        #aform {
             padding-top: 45px;
             border-radius: 15px;
             box-sizing: border-box;
@@ -111,8 +111,7 @@
         function init() {
             var form = document.getElementById("aform");
             form.addEventListener("submit", checkValidation, false);
-            document.getElementById("pwdLogin").addEventListener("change", checkPassword, false);
-			document.getElementById("pwd").addEventListener("change", checkPassword ,false);
+			document.getElementByName("pwd")[0].addEventListener("change", checkPassword ,false);
         }
 
         function checkValidation(event) {
@@ -120,9 +119,12 @@
             checkPassword();
             checkFirstName();
             checkLastName();
-            if (counter === 2) {
+
+            //check for user for the login
+            //checkForUser();
+            if (counter === 3) {
                 document.body.style.backgroundColor = " #1d242c";
-                alert(firstName + "\n" + lastName + "\n"  + student_id + "\n" + bio + "\n" + "Your form submission was successful.");
+                alert(firstName + "\n" + lastName + "\n" + "Your form submission was successful.");
                 counter = 0;
             }
             else {
@@ -133,16 +135,14 @@
         }
 		
 		function checkPassword(){
-		    var password = document.getElementById("pwd").value;
+		    var password = document.getElementByName("pwd")[0].value;
 		    if(!(password.match(/[\$\\\/\!\@\#\%\^\&\*\(\)\-\_\=\`\~\[\{\]\}\;\:\'\"\,\.\<\>\?]/gi) && password.match(/[\d]/gi) &&
                                password.length > 5)){
                 document.getElementById("pwdError").innerHTML= "Password did not meet the security requirement of one number and one special character";
 		    }
-		    var passwordLogin = document.getElementById("pwdLogin").value;
-            if(!(passwordLogin.match(/[\$\\\/\!\@\#\%\^\&\*\(\)\-\_\=\`\~\[\{\]\}\;\:\'\"\,\.\<\>\?]/gi) && password.match(/[\d]/gi) &&
-                               passwordLogin.length > 5)){
-            document.getElementById("pwdError").innerHTML= "Password did not meet the security requirement of one number and one special character";
-            }
+		    else{
+		    counter++;
+		    }
 		}
 		
         function checkFirstName() {
@@ -201,19 +201,21 @@
 </head>
 <body>
 <h1>Registration </h1>
-<div id="login">
-    <h2>Login</h2>
-    <div class="logInBox"id="login">
-        <label>Email</label>
-        <input id="email" class="form-control" type="email" value="" placeholder="email" required>
-        <label>Password</label>
-        <input id="pwdLogin" class="form-control" type="password" value="" placeholder="password" required>
-        <input class="loginButton" type="submit" value="login">
-        <p><em id="pwdError"></em><p>
+<form action="" method="post">
+    <div id="login">
+        <h2>Login</h2>
+        <div class="logInBox"id="login">
+            <label>Email</label>
+            <input id="email" class="form-control" type="email" value="" placeholder="email" required>
+            <label>Password</label>
+            <input id="pwdLogin" name="pwd" class="form-control" type="password" value="" placeholder="password" required>
+            <input class="loginButton" type="submit" value="login">
+            <p><em id="pwdError"></em><p>
+        </div>
     </div>
-</div>
+</form>
 <div id="myContainer">
-    <form id="aform">
+    <form id="aform" action="" method="post">
         <div class="form-group">
             <label for="fname">First Name</label>
             <input id="fname" class="form-control" type="text" name="fname" placeholder="First Name" required>
@@ -244,8 +246,36 @@
     </form>
 </div>
 <?php
+    //check if variable exist
+    //register
+    if(!empty($_POST["fname"]) && !empty($_POST["lname"]) && !empty($_POST["email"]) && !empty($_POST["pwd"])){
+        $fname = $_POST["fname"];
+        $lname = $_POST["lname"];
+        $email = $_POST["email"];
+        $pwd = $_POST["pwd"];
+        $userName = "root";
+        $localHost = "localhost:3306";
+        $password = "";
+        $database = "lab4";
 
-
+        $connection = new mysqli($localHost, $userName, $password, $database);
+        //check connection
+        if($connection -> connect_errno){
+            echo("<script>console.log('PHP: ".$connection."');</script>");
+        }
+        $query = "INSERT into user(fname, lname, email, pwd) VALUES ('$fname', '$lname', '$email','$pwd')";
+        $result = mysqli_query($connection,$query);
+        //debug
+        if(!$result){
+            echo("<script>console.log('PHP: ".$result."');</script>");
+        }
+    }
+    else{
+        echo("<script>console.log('nothing');</script>");
+    }
+    //login
+    //if(!empty($_POST[""])){
+    //}
 ?>
 </body>
 </html>
