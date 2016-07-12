@@ -23,7 +23,14 @@
                      }
                      else{
                               $queryUserAndPassword = "SELECT * FROM user WHERE email = '$email' AND pwd = '$pwd'";
-                              $checkUser = mysqli_query($connection, $queryUser);
+                              $checkUserPwd = mysqli_query($connection, $queryUser);
+                              $passwordAndUserCheck = mysqli_fetch_array($checkUserPwd, MYSQLI_NUM);
+                              if($passwordAndUserCheck[0]==1){
+                                    echo "WELCOME!";
+                              }
+                              else{
+                                    echo "invalid password or email";
+                              }
                      }
     }
 ?>
