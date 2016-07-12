@@ -251,10 +251,7 @@
     //register
 
         if(!empty($_POST["fname"]) && !empty($_POST["lname"]) && !empty($_POST["email"]) && !empty($_POST["pwd"])){
-            $fname = $_POST["fname"];
-            $lname = $_POST["lname"];
-            $email = $_POST["email"];
-            $pwd = $_POST["pwd"];
+
             $userName = "root";
             $localHost = "localhost:3306";
             $password = "";
@@ -265,17 +262,22 @@
             if($connection -> connect_errno){
                 echo("<script>console.log('PHP: ".$connection."');</script>");
             }
+            $fname = mysqli_real_escape_string($connection, $_POST["fname"]);
+            $lname = mysqli_real_escape_string($connection, $_POST["lname"]);
+            $email = mysqli_real_escape_string($connection, $_POST["email"]);
+            $pwd = mysqli_real_escape_string($connection, $_POST["pwd"]);
             $queryUser = "SELECT COUNT(*) FROM user WHERE email = '$email' ";
             $checkUser = mysqli_query($connection, $queryUser);
             $dataCheck = mysqli_fetch_array($checkUser, MYSQLI_NUM);
             if($dataCheck[0] > 1)
             {
-                echo('<script type="text/javascript">
-                       document.getElementById("pwdError").innerHTML = "user already exist";
-                       </script>');
+                echo "already Exist";
             }
             else{
-                $query = "INSERT into user(fname, lname, email, pwd) VALUES ('$fname', '$lname', '$email','$pwd')";
+                $salt = openssl_random_pseudo_bytes(32);
+                $pwdAppend = $salt . $pwd;
+                $newPwd = hash("sha256", $pwdAppend);
+                $query = "INSERT into user(fname, lname, email, pwd, salt) VALUES ('$fname', '$lname', '$email','$newPwd', '$salt')";
                 $result = mysqli_query($connection,$query);
             }
             //debug
