@@ -205,6 +205,7 @@
     <div id="login">
         <h2>Login</h2>
         <div class="logInBox"id="login">
+        <!--kaplan says ok for email instead of userName -->
             <label>Email</label>
             <input id="email" class="form-control" type="email" value="" placeholder="email" required>
             <label>Password</label>
@@ -248,31 +249,32 @@
 <?php
     //check if variable exist
     //register
-    if(!empty($_POST["fname"]) && !empty($_POST["lname"]) && !empty($_POST["email"]) && !empty($_POST["pwd"])){
-        $fname = $_POST["fname"];
-        $lname = $_POST["lname"];
-        $email = $_POST["email"];
-        $pwd = $_POST["pwd"];
-        $userName = "root";
-        $localHost = "localhost:3306";
-        $password = "";
-        $database = "lab4";
 
-        $connection = new mysqli($localHost, $userName, $password, $database);
-        //check connection
-        if($connection -> connect_errno){
-            echo("<script>console.log('PHP: ".$connection."');</script>");
+        if(!empty($_POST["fname"]) && !empty($_POST["lname"]) && !empty($_POST["email"]) && !empty($_POST["pwd"])){
+            $fname = $_POST["fname"];
+            $lname = $_POST["lname"];
+            $email = $_POST["email"];
+            $pwd = $_POST["pwd"];
+            $userName = "root";
+            $localHost = "localhost:3306";
+            $password = "";
+            $database = "lab4";
+
+            $connection = new mysqli($localHost, $userName, $password, $database);
+            //check connection
+            if($connection -> connect_errno){
+                echo("<script>console.log('PHP: ".$connection."');</script>");
+            }
+            $query = "INSERT into user(fname, lname, email, pwd) VALUES ('$fname', '$lname', '$email','$pwd')";
+            $result = mysqli_query($connection,$query);
+            //debug
+            if(!$result){
+                echo("<script>console.log('PHP: ".$result."');</script>");
+            }
         }
-        $query = "INSERT into user(fname, lname, email, pwd) VALUES ('$fname', '$lname', '$email','$pwd')";
-        $result = mysqli_query($connection,$query);
-        //debug
-        if(!$result){
-            echo("<script>console.log('PHP: ".$result."');</script>");
+        else{
+            echo("<script>console.log('nothing');</script>");
         }
-    }
-    else{
-        echo("<script>console.log('nothing');</script>");
-    }
     //login
     //if(!empty($_POST[""])){
     //}
