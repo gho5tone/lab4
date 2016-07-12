@@ -111,7 +111,7 @@
         function init() {
             var form = document.getElementById("aform");
             form.addEventListener("submit", checkValidation, false);
-			document.getElementByName("pwd")[0].addEventListener("change", checkPassword ,false);
+			document.getElementById("pwd").addEventListener("change", checkPassword ,false);
         }
 
         function checkValidation(event) {
@@ -209,7 +209,7 @@
             <label>Email</label>
             <input id="email" class="form-control" type="email" value="" placeholder="email" required>
             <label>Password</label>
-            <input id="pwdLogin" name="pwd" class="form-control" type="password" value="" placeholder="password" required>
+            <input id="pwdLogin" name="pwdLogin" class="form-control" type="password" value="" placeholder="password" required>
             <input class="loginButton" type="submit" value="login">
             <p><em id="pwdError"></em><p>
         </div>
@@ -265,8 +265,19 @@
             if($connection -> connect_errno){
                 echo("<script>console.log('PHP: ".$connection."');</script>");
             }
-            $query = "INSERT into user(fname, lname, email, pwd) VALUES ('$fname', '$lname', '$email','$pwd')";
-            $result = mysqli_query($connection,$query);
+            $queryUser = "SELECT COUNT(*) FROM user WHERE email = '$email' ";
+            $checkUser = mysqli_query($connection, $queryUser);
+            $dataCheck = mysqli_fetch_array($checkUser, MYSQLI_NUM);
+            if($dataCheck[0] > 1)
+            {
+                echo('<script type="text/javascript">
+                       document.getElementById("pwdError").innerHTML = "user already exist";
+                       </script>');
+            }
+            else{
+                $query = "INSERT into user(fname, lname, email, pwd) VALUES ('$fname', '$lname', '$email','$pwd')";
+                $result = mysqli_query($connection,$query);
+            }
             //debug
             if(!$result){
                 echo("<script>console.log('PHP: ".$result."');</script>");
