@@ -135,7 +135,7 @@
         }
 		
 		function checkPassword(){
-		    var password = document.getElementByName("pwd")[0].value;
+		    var password = document.getElementById("pwd").value;
 		    if(!(password.match(/[\$\\\/\!\@\#\%\^\&\*\(\)\-\_\=\`\~\[\{\]\}\;\:\'\"\,\.\<\>\?]/gi) && password.match(/[\d]/gi) &&
                                password.length > 5)){
                 document.getElementById("pwdError").innerHTML= "Password did not meet the security requirement of one number and one special character";
@@ -201,17 +201,17 @@
 </head>
 <body>
 <h1>Registration </h1>
-<form action="" method="post">
+<form action="login.php" method="post">
     <div id="login">
         <h2>Login</h2>
         <div class="logInBox"id="login">
         <!--kaplan says ok for email instead of userName -->
             <label>Email</label>
-            <input id="email" class="form-control" type="email" value="" placeholder="email" required>
+            <input id="email" name="loginEmail"class="form-control" type="email" value="" placeholder="email" required>
             <label>Password</label>
             <input id="pwdLogin" name="pwdLogin" class="form-control" type="password" value="" placeholder="password" required>
             <input class="loginButton" type="submit" value="login">
-            <p><em id="pwdError"></em><p>
+            <p><em id="pwdErrorLogin"></em><p>
         </div>
     </div>
 </form>
