@@ -138,7 +138,7 @@
 		    var password = document.getElementById("pwd").value;
 		    if(!(password.match(/[\$\\\/\!\@\#\%\^\&\*\(\)\-\_\=\`\~\[\{\]\}\;\:\'\"\,\.\<\>\?]/gi) && password.match(/[\d]/gi) &&
                                password.length > 5)){
-                document.getElementById("pwdError").innerHTML= "Password did not meet the security requirement of one number and one special character";
+                document.getElementById("pwdError").innerHTML= "Password did not meet the security requirement of one number, one special character, and at least 5 chars";
 		    }
 		    else{
 		    counter++;
