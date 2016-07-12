@@ -1,4 +1,9 @@
-  a  description  of  all  files  you  are  turning  in  (especially  if  there  are  extra  PHP  files),
-• a  description  of  how  much  of  the  project  is  complete
-• a  description  of extra  credit that  was completed  (if  you  completed  it)
-• a  description  of  any  known  bugs  in  the  program
+- a  description  of  all  files  you  are  turning  in  (especially  if  there  are  extra  PHP  files),
+    Main file is Lab4.php
+        Secondary file for login is login.php
+- a  description  of  how  much  of  the  project  is  complete
+    Majority of the project is complete
+- a  description  of extra  credit that  was completed  (if  you  completed  it)
+    Hash, Salt, and SHA512 was added to password and salt was added to database
+- a  description  of  any  known  bugs  in  the  program
+    There may be cases where there are no display of innerHTML

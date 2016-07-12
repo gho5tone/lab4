@@ -1,0 +1,54 @@
+-- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
+--
+-- Host: localhost    Database: lab4
+-- ------------------------------------------------------
+-- Server version	5.7.9
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `fname` varchar(20) NOT NULL,
+  `lname` varchar(20) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `pwd` varchar(255) NOT NULL,
+  `salt` varchar(60) NOT NULL,
+  PRIMARY KEY (`email`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES ('A','A','A@gmail.com','56f957c3ffea14129edfd0dc700f73d7a426c4f32e6d5d21f61c0611d5d7a6d0',',2Ö%Q”_…\ZÚ;uíkF³á/p­>ˆ0–Ïï™©'),('S','S','s@gmail.com','4c32a2d5d0640512263c93bdccce3e5cf768c794acb9988d2220bffb508d797f','Y]Ì)ôT¨–hGÌºt«_ü‹_ÝÙémäC“8ª/V'),('Q','Q','q@gmail.com','54fec486e5f9d5609295db7cba684de1b01daea87c4e95c75eb0f7fc99f7caa8','Ê±à	ž@ã¨r¥ÒJ#+q0µÛóIKÚìIjÒåœÝ'),('R','R','r@gmail.com','53da5056ac7254923fd47d108c37f4c9b3c74e3cafbfb8eca318db074da0dff1','bØSE¦ümWPÜrC#îï3>A	Œüï ‰xvò~Á'),('V','V','v@gmail.com','4c75a95bc01bbaff4291bbb68b4141b6b73190c43cf854a687734848815cfd7f2bc404a007c21433c1dbc185006f4bba3373dadde3d20038c9e6b031b5bb2c0d','xy±,†ð[ïŽ„²VùFƒS5A‹=Ú%Wüx{Žæ'),('E','E','e@gmail.com','7872834d18d48ce1d85670848df85efba17ee452c1803ae132a87108aa0418847e76c8517aa740618f693ec2e3137ca87584a5d762211474428d306c0c7de472','*ßù>ØTpÊq¦L-oÉ?òj•óXJÇ›y^h‡\0RÏ'),('D','D','d@gmail.com','268826748c3644bf8899f15b49ae8144fbe870b0f1a433796fc3c43bbc78ddff8a8553d72804db18a72f20e1e6d1609e4333fdd70a4a00a08f0101948aefe502','»tb=©	„âH¸ÆË§Öe@ð_UÛ¾†5óqº');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2016-07-12  0:11:39

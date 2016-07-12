@@ -116,6 +116,7 @@
 
         function checkValidation(event) {
             //event.preventDefault()
+            counter =0;
             checkPassword();
             checkFirstName();
             checkLastName();
@@ -124,7 +125,7 @@
             //checkForUser();
             if (counter === 3) {
                 document.body.style.backgroundColor = " #1d242c";
-                alert(firstName + "\n" + lastName + "\n" + "Your form submission was successful.");
+                //alert(firstName + "\n" + lastName + "\n" + "Your form submission was successful.");
                 counter = 0;
             }
             else {
@@ -276,7 +277,7 @@
             else{
                 $salt = openssl_random_pseudo_bytes(32);
                 $pwdAppend = $salt . $pwd;
-                $newPwd = hash("sha256", $pwdAppend);
+                $newPwd = hash("sha512", $pwdAppend);
                 $query = "INSERT into user(fname, lname, email, pwd, salt) VALUES ('$fname', '$lname', '$email','$newPwd', '$salt')";
                 $result = mysqli_query($connection,$query);
             }
@@ -286,7 +287,7 @@
             }
         }
         else{
-            echo("<script>console.log('nothing');</script>");
+            echo "";
         }
     //login
     //if(!empty($_POST[""])){
